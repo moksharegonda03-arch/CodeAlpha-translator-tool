@@ -1,17 +1,21 @@
 # 🌍 Language Translator App
 
-This is a web-based language translator built using Flask.
+This is a web-based language translator built using Flask and Deep Translator.
 
 ## 🚀 Features
 - Translate text into multiple languages
-- Simple UI
+- Simple and clean user interface
 - Fast translation
 
 ## 📸 Screenshots
 
-![Screenshot 1](static/screenshot1.png)
+![Screenshot 1](static/screenshot1.png.jpeg)
 
-![Screenshot 2](static/screenshot2.png)
+![Screenshot 2](static/screenshot2.png.jpeg)
 
-![Screenshot 3](static/screenshot3.png)
+![Screenshot 3](static/screenshot3.png.jpeg)
 
+## ⚙️ How to Run
+
+pip install -r requirements.txt  
+python app.py
