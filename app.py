@@ -1,26 +1,27 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 from deep_translator import GoogleTranslator
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return render_template("index.html")
+    translated_text = ""
 
-@app.route("/translate", methods=["POST"])
-def translate():
-    data = request.get_json()
-    text = data.get("text")
-    target = data.get("target")
+    if request.method == "POST":
+        text = request.form["text"]
+        source_lang = request.form["source"]
+        target_lang = request.form["target"]
 
-    if not text:
-        return jsonify({"translated_text": "Please enter text"})
+        translated_text = GoogleTranslator(
+            source=source_lang,
+            target=target_lang
+        ).translate(text)
 
-    try:
-        result = GoogleTranslator(source='auto', target=target).translate(text)
-        return jsonify({"translated_text": result})
-    except Exception as e:
-        return jsonify({"translated_text": "Error: " + str(e)})
+    return render_template(
+        "index.html",
+        translated_text=translated_text
+    )
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000)
