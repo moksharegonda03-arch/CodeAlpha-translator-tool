@@ -9,11 +9,11 @@ This is a web-based language translator built using Flask and Deep Translator.
 
 ## 📸 Screenshots
 
-![Screenshot 1](static/screenshot1.png.jpeg)
+![Screenshot 1](screenshot1.png.jpeg)
 
-![Screenshot 2](static/screenshot2.png.jpeg)
+![Screenshot 2](screenshot2.png.jpeg)
 
-![Screenshot 3](static/screenshot3.png.jpeg)
+![Screenshot 3](screenshot3.png.jpeg) 
 
 ## ⚙️ How to Run
 
