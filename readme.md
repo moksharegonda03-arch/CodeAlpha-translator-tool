@@ -8,12 +8,11 @@ This is a web-based language translator built using Flask and Deep Translator.
 - Fast translation
 
 ## 📸 Screenshots
+![Translator Image 1](translatorimage1.png)
 
-![Screenshot 1](screenshot1.png.jpeg)
+![Translator Image 2](translatorimage2.png)
 
-![Screenshot 2](screenshot2.png.jpeg)
-
-![Screenshot 3](screenshot3.png.jpeg) 
+![Translator Image 3](translatorimage3.png) 
 
 ## ⚙️ How to Run
 
