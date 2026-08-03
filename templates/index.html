@@ -7,33 +7,44 @@
 <body>
 
 <div class="container">
-    <h2>Language Translator</h2>
+    <h2>🌍 Language Translator</h2>
 
-    <form method="POST">
-        <textarea name="text" placeholder="Enter text"></textarea>
+    <textarea id="text" placeholder="Enter text..."></textarea>
 
-        <br>
+    <select id="language">
+        <option value="hi">Hindi</option>
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="de">German</option>
+    </select>
 
-        <select name="source">
-            <option value="en">English</option>
-            <option value="hi">Hindi</option>
-            <option value="te">Telugu</option>
-        </select>
+    <button onclick="translateText()">Translate</button>
 
-        <select name="target">
-            <option value="hi">Hindi</option>
-            <option value="en">English</option>
-            <option value="te">Telugu</option>
-        </select>
-
-        <br><br>
-
-        <button type="submit">Translate</button>
-    </form>
-
-    <h3>Output:</h3>
-    <textarea readonly>{{ translated_text }}</textarea>
+    <h3>Result:</h3>
+    <p id="result"></p>
 </div>
+
+<script>
+function translateText() {
+    let text = document.getElementById("text").value;
+    let target = document.getElementById("language").value;
+
+    fetch("/translate", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            text: text,
+            target: target
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("result").innerText = data.translated_text;
+    });
+}
+</script>
 
 </body>
 </html>
