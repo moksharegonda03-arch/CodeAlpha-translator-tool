@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from deep_translator import GoogleTranslator
+import os
 
 app = Flask(__name__)
 
@@ -8,20 +9,11 @@ def home():
     translated_text = ""
 
     if request.method == "POST":
-        text = request.form["text"]
-        source_lang = request.form["source"]
-        target_lang = request.form["target"]
+        text = request.form.get("text")
+        if text:
+            translated_text = GoogleTranslator(source='auto', target='hi').translate(text)
 
-        translated_text = GoogleTranslator(
-            source=source_lang,
-            target=target_lang
-        ).translate(text)
-
-    return render_template(
-        "index.html",
-        translated_text=translated_text
-    )
-
+    return render_template("index.html", translated_text=translated_text)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

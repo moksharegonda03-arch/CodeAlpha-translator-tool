@@ -1,50 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Translator</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Language Translator</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f2f2f2;
+            margin-top: 100px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background: blue;
+            color: white;
+            border: none;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: green;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>🌍 Language Translator</h2>
+    <h1>🌍 Language Translator</h1>
 
-    <textarea id="text" placeholder="Enter text..."></textarea>
+    <form method="POST">
+        <input type="text" name="text" placeholder="Enter text here" required>
+        <br>
+        <button type="submit">Translate</button>
+    </form>
 
-    <select id="language">
-        <option value="hi">Hindi</option>
-        <option value="fr">French</option>
-        <option value="es">Spanish</option>
-        <option value="de">German</option>
-    </select>
-
-    <button onclick="translateText()">Translate</button>
-
-    <h3>Result:</h3>
-    <p id="result"></p>
-</div>
-
-<script>
-function translateText() {
-    let text = document.getElementById("text").value;
-    let target = document.getElementById("language").value;
-
-    fetch("/translate", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            text: text,
-            target: target
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        document.getElementById("result").innerText = data.translated_text;
-    });
-}
-</script>
+    <div class="result">
+        {{ translated_text }}
+    </div>
 
 </body>
 </html>
